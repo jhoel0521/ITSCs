@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ITSC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ITSC
 {
@@ -24,6 +26,8 @@ namespace ITSC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            var coonection = Configuration.GetConnectionString("connectionDB");
+            services.AddDbContext<itscContext>(options => options.UseSqlServer(coonection));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
